@@ -7,7 +7,10 @@ const BacsDocument = mongoose.model('BacsDocument', {
     minlength: 1,
     trim: true
   },
-  bacsDocument: Object,
+  bacsDocument: {
+    type: Object,
+    required: true
+  },
   status: {
     type: String,
     required: true,
