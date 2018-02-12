@@ -4,10 +4,6 @@ const path = require('path');
 const xml2js = require('xml2js');
 const moment = require('moment');
 
-require('../config/config');
-
-const {mongoose} = require('../db/mongoose');
-
 const {BacsDocument} = require('../models/bacsDocument');
 const {ReturnedDebit} = require('../models/returnedDebit');
 
@@ -67,6 +63,8 @@ getBacsReadyForProcessing()
 .then((result)=> {
   processDocuments(result)
   .then((records) => {
-console.log(records)
+    console.log(records)
   })
-})
+});
+
+module.exports = {getBacsReadyForProcessing};
