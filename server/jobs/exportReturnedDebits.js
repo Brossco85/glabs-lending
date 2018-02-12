@@ -7,6 +7,7 @@ const moment = require('moment');
 const {BacsDocument} = require('../models/bacsDocument');
 const {ReturnedDebit} = require('../models/returnedDebit');
 
+
 const getBacsReadyForProcessing = () => {
   return BacsDocument.find({status: "Saved"}).then((documents) => {
     return documents;
@@ -57,13 +58,28 @@ const exportReturnedDebits = (doc) => {
     console.log(err)
     reject(err)
   });
+};
+
+const updateBacsDocumentStatus = (processedDocs) => {
+  let completeDocs = processedDocs.map((doc) => {
+    BacsDocument.findByIdAndUpdate(doc._id, {$set: {status: "Processed"}}, {new: true}).then((bacsDoc) => {
+      console.log(bacsDoc)
+      return bacsDoc;
+    })
+    return completeDocs;
+  })
 }
 
 getBacsReadyForProcessing()
 .then((result)=> {
   processDocuments(result)
   .then((records) => {
-    console.log(records)
+    console.log("here")
+    updateBacsDocumentStatus(result)
+    .then((docs) => {
+      console.log("about to exit");
+      process.exit();
+    })
   })
 });
 

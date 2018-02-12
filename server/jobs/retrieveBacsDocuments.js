@@ -21,8 +21,6 @@ const archiveBacsDocument = (folder) => {
   console.log("File has been saved to the database and archived");
 };
 
-//  if all documents are created ok then change bacs document status to "Complete"
-
 const retrieveNewBacsDocuments = () => {
   return new Promise ((resolve, reject) => {
     const bacsFolderDate = moment().subtract(11, 'days').format('YYYY-MM-DD');
@@ -97,6 +95,7 @@ retrieveNewBacsDocuments()
       saveBacsDocuments(parsedDocuments)
       .then((savedDocs) => {
         console.log(`${savedDocs.length} new Bacs Documents have been saved to the database`);
+        process.exit();
       })
     })
   })
