@@ -17,31 +17,56 @@ const getBacsReadyForProcessing = () => {
   })
 }
 
-const getOriginatingAccountRecords = (documents) => {
-  let originatingAccountRecords = documents.map((document) => {
+const processDocuments = (docs) => {
+  let processedDocs = docs.map((doc) => {
     return new Promise((resolve, reject) => {
-      resolve(document.bacsDocument.Data.ARUDD.Advice.OriginatingAccountRecords.OriginatingAccountRecord)
+      let returnedDebits = exportReturnedDebits(doc)
+      resolve(returnedDebits)
     })
   })
-  return Promise.all(originatingAccountRecords)
-  .then((records) => {
-    return records;
-  }).catch((err) => {
-    console.log(err);
-  })
+  return Promise.all(processedDocs)
+  .then((documents) => {
+    return documents;
+  }, (err) => {
+    console.log(err)
+    reject(err)
+  });
 }
 
-// const extractReturnedDebits = () => {
-  
-// }
-
-
+const exportReturnedDebits = (doc) => {
+  const returnedDebits = doc.bacsDocument.Data.ARUDD.Advice.OriginatingAccountRecords.OriginatingAccountRecord.ReturnedDebitItem;
+  const originatingAccountRecord = doc.bacsDocument.Data.ARUDD.Advice.OriginatingAccountRecords.OriginatingAccountRecord;
+  let savedDebits = returnedDebits.map ((item) => {
+    return new Promise ((resolve, reject) => {
+      let returnedDebit = new ReturnedDebit({
+        originatingAccountRecord: originatingAccountRecord,
+        ref: item.ref,
+        transCode: item.transCode,
+        returnCode: item.returnCode,
+        returnDescription: item.returnDescription,
+        originalProcessingDate: item.originalProcessingDate,
+        valueOf: item.valueOf[1],
+        currency: item.currency,
+        PayerAccount: item.PayerAccount
+      })
+      returnedDebit.save().then((debit) => {
+        resolve(debit);
+      })
+    })
+  })
+  return Promise.all(savedDebits)
+  .then((documents) => {
+    return documents;
+  }, (err) => {
+    console.log(err)
+    reject(err)
+  });
+}
 
 getBacsReadyForProcessing()
 .then((result)=> {
-  getOriginatingAccountRecords(result)
+  processDocuments(result)
   .then((records) => {
-    console.log(records)
+console.log(records)
   })
 })
-
