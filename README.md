@@ -14,7 +14,7 @@ MongoDB <br>
 Node.js with NPM - install instructions [Here](https://docs.npmjs.com/getting-started/installing-node) <br>
 MongoDB - Port 27017 - install instructions [Here](https://docs.mongodb.com/manual/installation/) <br>
 
-1. Clone Repository using git clone https://github.com/Brossco85/waracake.git <br>
+1. Clone Repository using git clone https://github.com/Brossco85/glabs-lending.git <br>
 2. From the Root Project folder `npm install` <br> 
 3. `npm install` <br>
 4. start mongodb locally <br>
