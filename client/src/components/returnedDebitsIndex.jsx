@@ -1,9 +1,8 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { fetchReturnedDebits } from '../actions';
-import { Image, ListGroup, ListGroupItem, Badge } from 'react-bootstrap';
+import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
 class ReturnedDebitsIndex extends Component {
 
