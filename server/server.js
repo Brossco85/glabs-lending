@@ -1,16 +1,18 @@
 require('./config/config');
 
 const scheduler = require('node-schedule');
+const {CronJob} = require('cron');
+
 const {mongoose} = require('./db/mongoose');
 
-const {retrieveNewBacsDocuments} = require('./jobs/retrieveBacsDocuments');
-const {getBacsReadyForProcessing} = require('./jobs/exportReturnedDebits');
+const {beginRetrieveNewBacsDocs} = require('./jobs/retrieveBacsDocuments');
+const {beginExportReturnedDebits} = require('./jobs/exportReturnedDebits');
 
 
-const scheduleFetchNewBacsJob = scheduler.scheduleJob('18 * * * *', () => {
-  retrieveNewBacsDocuments();
-});
+new CronJob('* * * * * *', () => {
+  beginRetrieveNewBacsDocs();
+}, null, true, "Europe/London");
 
-const scheduleExportReturnedDebitsJob = scheduler.scheduleJob('19 * * * *', () => {
-  getBacsReadyForProcessing();
-});
+new CronJob('* * * * * *', () => {
+  beginExportReturnedDebits();
+}, null, true, "Europe/London");

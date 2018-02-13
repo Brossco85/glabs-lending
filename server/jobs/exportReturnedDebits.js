@@ -71,7 +71,8 @@ const updateBacsDocumentStatus = (processedDocs) => {
   });
 };
 
-getBacsReadyForProcessing()
+const beginExportReturnedDebits = () => {
+return getBacsReadyForProcessing()
 .then((result)=> {
   processDocuments(result)
   .then((records) => {
@@ -80,6 +81,7 @@ getBacsReadyForProcessing()
       console.log(docs);
     })
   })
-});
+})
+};
 
-module.exports = {getBacsReadyForProcessing};
+module.exports = {beginExportReturnedDebits};

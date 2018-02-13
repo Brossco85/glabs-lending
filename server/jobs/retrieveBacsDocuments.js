@@ -104,23 +104,26 @@ const archiveBacsDocument = () => {
   })
 };
 
-retrieveNewBacsDocuments()
-.then((newDocs) => {
-  readFilesFromDirectory(newDocs)
-  .then((returnedFiles) => {
-    parseBacsDocuments(returnedFiles)
-    .then((parsedDocuments) => {
-      saveBacsDocuments(parsedDocuments)
-      .then((savedDocs) => {
-        archiveBacsDocument()
-        .then((archiveResponse) => {
-          console.log(`${savedDocs.length} new Bacs Documents have been saved to the database`);
-          console.log(archiveResponse);
+const beginRetrieveNewBacsDocs = () => {
+  return retrieveNewBacsDocuments()
+  .then((newDocs) => {
+    readFilesFromDirectory(newDocs)
+    .then((returnedFiles) => {
+      parseBacsDocuments(returnedFiles)
+      .then((parsedDocuments) => {
+        saveBacsDocuments(parsedDocuments)
+        .then((savedDocs) => {
+          archiveBacsDocument()
+          .then((archiveResponse) => {
+            console.log(`${savedDocs.length} new Bacs Documents have been saved to the database`);
+            console.log(archiveResponse);
+          })
         })
       })
     })
-  })
-});
+  });
+}
 
 
-module.exports = {retrieveNewBacsDocuments};
+
+module.exports = {beginRetrieveNewBacsDocs};
