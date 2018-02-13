@@ -26,7 +26,7 @@ const processDocuments = (docs) => {
 
 const exportReturnedDebits = (doc) => {
   const returnedDebits = doc.bacsDocument.Data.ARUDD.Advice.OriginatingAccountRecords.OriginatingAccountRecord.ReturnedDebitItem;
-  const originatingAccountRecord = doc.bacsDocument.Data.ARUDD.Advice.OriginatingAccountRecords.OriginatingAccountRecord;
+  const originatingAccountRecord = doc.bacsDocument.Data.ARUDD.Advice.OriginatingAccountRecords.OriginatingAccountRecord.OriginatingAccount;
   let savedDebits = returnedDebits.map ((item) => {
     return new Promise ((resolve, reject) => {
       let returnedDebit = new ReturnedDebit({
