@@ -2,9 +2,8 @@ import { combineReducers } from 'redux';
 import ReturnedDebitsReducer from './reducerReturnedDebits';
 
 const rootReducer = combineReducers({
-  returnedDebits: ReturnedDebitsReducere
+  returnedDebits: ReturnedDebitsReducer
 });
-
 
 
 export default rootReducer;
