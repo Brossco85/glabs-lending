@@ -1,9 +1,3 @@
-const fs = require('fs');
-const glob = require('glob');
-const path = require('path');
-const xml2js = require('xml2js');
-const moment = require('moment');
-
 const {BacsDocument} = require('../models/bacsDocument');
 const {ReturnedDebit} = require('../models/returnedDebit');
 
@@ -62,23 +56,28 @@ const exportReturnedDebits = (doc) => {
 
 const updateBacsDocumentStatus = (processedDocs) => {
   let completeDocs = processedDocs.map((doc) => {
-    BacsDocument.findByIdAndUpdate(doc._id, {$set: {status: "Processed"}}, {new: true}).then((bacsDoc) => {
-      console.log(bacsDoc)
-      return bacsDoc;
+    return new Promise((resolve, reject) => {
+      BacsDocument.findByIdAndUpdate(doc._id, {$set: {status: "Processed"}}, {new: true}).then((bacsDoc) => {
+        resolve(bacsDoc);
+      })
     })
-    return completeDocs;
   })
-}
+  return Promise.all(completeDocs)
+  .then((documents) => {
+    return documents;
+  }, (err) => {
+    console.log(err)
+    reject(err)
+  });
+};
 
 getBacsReadyForProcessing()
 .then((result)=> {
   processDocuments(result)
   .then((records) => {
-    console.log("here")
     updateBacsDocumentStatus(result)
     .then((docs) => {
-      console.log("about to exit");
-      process.exit();
+      console.log(docs);
     })
   })
 });
