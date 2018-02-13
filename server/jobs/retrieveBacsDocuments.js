@@ -92,12 +92,18 @@ const saveBacsDocuments = (parsedDocs) => {
   })
 };
 
-const archiveBacsDocument = (folder) => {
-  const zipper = new zip();
-  zipper.addLocalFolder(path.resolve(__dirname, `../../arudd-directory/REFT1234/${folder}`));
-  zipper.writeZip(path.resolve(__dirname, `../../arudd-directory/archive/${folder}.zip`));
-  console.log("File has been saved to the database and archived");
+const archiveBacsDocument = () => {
+  return new Promise((resolve, reject) => {
+    const bacsFolderDate = moment().subtract(11, 'days').format('YYYY-MM-DD');
+    const zipper = new zip();
+    zipper.addLocalFolder(path.resolve(__dirname, `../../arudd-directory/REFT1234/${bacsFolderDate}`));
+    zipper.writeZip(path.resolve(__dirname, `../../arudd-directory/archive/${bacsFolderDate}.zip`));
+    resolve(`${bacsFolderDate} has been archived`);
+  }).catch((err) => {
+  console.log(err);
+  })
 };
+
 
 
 retrieveNewBacsDocuments()
@@ -108,11 +114,10 @@ retrieveNewBacsDocuments()
     .then((parsedDocuments) => {
       saveBacsDocuments(parsedDocuments)
       .then((savedDocs) => {
-        archiveSavedDocs()
-        .then(() => {
-
+        archiveBacsDocument()
+        .then((archiveResponse) => {
           console.log(`${savedDocs.length} new Bacs Documents have been saved to the database`);
-          process.exit();
+          console.log(archiveResponse)
         })
       })
     })
