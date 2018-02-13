@@ -100,11 +100,9 @@ const archiveBacsDocument = () => {
     zipper.writeZip(path.resolve(__dirname, `../../arudd-directory/archive/${bacsFolderDate}.zip`));
     resolve(`${bacsFolderDate} has been archived`);
   }).catch((err) => {
-  console.log(err);
+    console.log(err);
   })
 };
-
-
 
 retrieveNewBacsDocuments()
 .then((newDocs) => {
@@ -117,7 +115,7 @@ retrieveNewBacsDocuments()
         archiveBacsDocument()
         .then((archiveResponse) => {
           console.log(`${savedDocs.length} new Bacs Documents have been saved to the database`);
-          console.log(archiveResponse)
+          console.log(archiveResponse);
         })
       })
     })
