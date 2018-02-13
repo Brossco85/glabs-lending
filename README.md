@@ -18,7 +18,7 @@ MongoDB - Port 27017 - install instructions [Here](https://docs.mongodb.com/manu
 2. From the Root Project folder `npm install` <br> 
 3. `npm install` <br>
 4. start mongodb locally <br>
-8. npm start to satrt the server and run the background workers <br>
+8. npm start to start the server and run the background workers <br>
 
 <b>Next Steps</b><br>
 
