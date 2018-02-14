@@ -3,6 +3,11 @@ Node Js app running Background workers at 9.00pm and 9.05pm each day to get xml 
 
 v1 of the app is set up to look for new orders from the previous day in arudd-directory/REFT1234
 
+<b>Back End</b><br>
+Node.js <br>
+Cron <br>
+MongoDB <br>
+
 A basic React-Redux front end is currently in development using the following technologies:
 
 <b>Front End</b> <br>
@@ -10,12 +15,6 @@ React <br>
 Create-React-App <br>
 React-Router <br>
 Redux <br>
-
-
-<b>Back End</b><br>
-Node.js <br>
-Cron <br>
-MongoDB <br>
 
 <h2>Install and Run App Locally</h2>
 <h3>Requirements</h3> <br>
@@ -29,7 +28,7 @@ MongoDB - Port 27017 - install instructions [Here](https://docs.mongodb.com/manu
 4. `npm install` <br>
 5. `cd ..` <br>
 6. start mongodb locally <br>
-7. `npm start` to start the server and client concurrently the background workers <br>
+7. `npm start` to start the server and client concurrently and activate the background workers <br>
 8. Beta front end application will be available in your browser at localhost:3000 <br>
 
 <b>Next Steps</b><br>
