@@ -29,7 +29,7 @@ const parser = new xml2js.Parser({explicitArray : false, ignoreAttrs : false, me
 
 const retrieveNewBacsDocuments = () => {
   return new Promise ((resolve, reject) => {
-    const bacsFolderDate = moment().subtract(11, 'days').format('YYYY-MM-DD');
+    const bacsFolderDate = moment().subtract(1, 'days').format('YYYY-MM-DD');
     let newBacs = glob.sync(path.join(__dirname, `../../arudd-directory/REFT1234/${bacsFolderDate}/*.xml`));
     resolve(newBacs)
   }).catch((err) => {
@@ -94,7 +94,7 @@ const saveBacsDocuments = (parsedDocs) => {
 
 const archiveBacsDocument = () => {
   return new Promise((resolve, reject) => {
-    const bacsFolderDate = moment().subtract(11, 'days').format('YYYY-MM-DD');
+    const bacsFolderDate = moment().subtract(1, 'days').format('YYYY-MM-DD');
     const zipper = new zip();
     zipper.addLocalFolder(path.resolve(__dirname, `../../arudd-directory/REFT1234/${bacsFolderDate}`));
     zipper.writeZip(path.resolve(__dirname, `../../arudd-directory/archive/${bacsFolderDate}.zip`));
