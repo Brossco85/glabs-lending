@@ -11,6 +11,7 @@ class ReturnedDebitsIndex extends Component {
   }
 
   renderReturnedDebits() {
+    console.log(this.props)
     return _.map(this.props.returnedDebits, returnedDebit => {
       return (
         <ListGroupItem key={returnedDebit._id}>
