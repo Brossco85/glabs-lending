@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image } from 'react-bootstrap';
+import { Image, Nav } from 'react-bootstrap';
 import logo from './glabs.png';
 import './App.css';
 
@@ -10,6 +10,7 @@ class App extends Component {
         <header className="App-header">
           <Image src={logo} className="navbar-brand" alt="logo" />
         </header>
+        <Nav className="Nav-header" ></Nav>
       </div>
     );
   }
