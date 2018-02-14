@@ -37,6 +37,7 @@ API to GET/returned debits - in progress
 react-redux scalable front end - in progress
 build more flexible logic into the background workers
 delete files after processing
+investigate switch to agenda for better job handling [Here](https://github.com/agenda/agenda)
 
 
 <h2>Test Suite</h2>
