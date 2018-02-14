@@ -33,10 +33,11 @@ MongoDB - Port 27017 - install instructions [Here](https://docs.mongodb.com/manu
 
 <b>Next Steps</b><br>
 
-API to GET/returned debits - in progress
-react-redux scalable front end - in progress
-build more flexible logic into the background workers
-delete files after processing
+API to GET/returned debits - in progress <br>
+react-redux scalable front end - in progress <br>
+build more flexible logic into the background workers <br>
+delete files after processing <br>
+investigate switch to agenda for better job handling [Agenda](https://github.com/agenda/agenda)
 
 
 <h2>Test Suite</h2>
