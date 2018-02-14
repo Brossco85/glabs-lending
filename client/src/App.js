@@ -10,7 +10,7 @@ class App extends Component {
         <header className="App-header">
           <Image src={logo} className="navbar-brand" alt="logo" />
         </header>
-        <Nav className="Nav-header" ></Nav>
+        <Nav className="Nav-header"></Nav>
       </div>
     );
   }
