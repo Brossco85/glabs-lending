@@ -31,7 +31,11 @@ const retrieveNewBacsDocuments = () => {
   return new Promise ((resolve, reject) => {
     const bacsFolderDate = moment().subtract(1, 'days').format('YYYY-MM-DD');
     let newBacs = glob.sync(path.join(__dirname, `../../arudd-directory/REFT1234/${bacsFolderDate}/*.xml`));
+    if (newBacs.length > 0) {
     resolve(newBacs)
+  } else {
+    reject(`No Folder for ${bacsFolderDate} found`);
+  }
   }).catch((err) => {
     console.log(err);
   })
@@ -122,8 +126,7 @@ const beginRetrieveNewBacsDocs = () => {
       })
     })
   });
-}
-
+};
 
 
 module.exports = {beginRetrieveNewBacsDocs};
