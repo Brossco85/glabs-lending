@@ -79,7 +79,7 @@ const saveBacsDocuments = (parsedDocs) => {
       let bacsDocument = new BacsDocument ({
         name: `arudd-${parsedDoc.BACSDocument.Data.ARUDD.Header.adviceNumber}`,
         bacsDocument: parsedDoc.BACSDocument,
-        status: "Saved"
+        status: "Ready For Processing"
       });
       bacsDocument.save().then((doc) => {
         resolve(doc);
