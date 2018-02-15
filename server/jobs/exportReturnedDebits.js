@@ -2,17 +2,31 @@ const {BacsDocument} = require('../models/bacsDocument');
 const {ReturnedDebit} = require('../models/returnedDebit');
 
 
+
 const getBacsReadyForProcessing = () => {
-  return BacsDocument.find({status: "Saved"}).then((documents) => {
-    return documents;
+  return new Promise((resolve, reject) => {
+    return BacsDocument.find({status: "Ready for Processing"}).then((documents) => {
+      if (documents.length > 0) {
+        resolve(documents);
+      } else {
+        reject("No Documents in Ready for Processing State");
+      }
+    }, (err) => {
+      console.log(err);
+    })
+  }, (err) => {
+    console.log(err);
   })
 }
+
 
 const processDocuments = (docs) => {
   let processedDocs = docs.map((doc) => {
     return new Promise((resolve, reject) => {
       let returnedDebits = exportReturnedDebits(doc)
       resolve(returnedDebits)
+    }, (err) => {
+      console.log(err);
     })
   })
   return Promise.all(processedDocs)
@@ -20,7 +34,6 @@ const processDocuments = (docs) => {
     return documents;
   }, (err) => {
     console.log(err)
-    reject(err)
   });
 }
 
@@ -42,7 +55,11 @@ const exportReturnedDebits = (doc) => {
       })
       returnedDebit.save().then((debit) => {
         resolve(debit);
+      }, (err) => {
+        console.log(err)
       })
+    }, (err) => {
+      console.log(err)
     })
   })
   return Promise.all(savedDebits)
@@ -50,7 +67,6 @@ const exportReturnedDebits = (doc) => {
     return documents;
   }, (err) => {
     console.log(err)
-    reject(err)
   });
 };
 
@@ -60,28 +76,32 @@ const updateBacsDocumentStatus = (processedDocs) => {
       BacsDocument.findByIdAndUpdate(doc._id, {$set: {status: "Processed"}}, {new: true}).then((bacsDoc) => {
         resolve(bacsDoc);
       })
-    })
+    }, (err) => {
+      console.log(err)
+    });
   })
   return Promise.all(completeDocs)
   .then((documents) => {
     return documents;
   }, (err) => {
     console.log(err)
-    reject(err)
   });
 };
 
 const beginExportReturnedDebits = () => {
-return getBacsReadyForProcessing()
-.then((result)=> {
-  processDocuments(result)
-  .then((records) => {
-    updateBacsDocumentStatus(result)
-    .then((docs) => {
-      console.log(docs);
+  return getBacsReadyForProcessing()
+  .then((result)=> {
+    processDocuments(result)
+    .then((records) => {
+      updateBacsDocumentStatus(result)
+      .then((docs) => {
+        console.log(docs);
+      })
     })
+  }).catch((err) => {
+    console.log(err);
   })
-})
 };
+
 
 module.exports = {beginExportReturnedDebits};
