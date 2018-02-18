@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, Nav, Jumbotron, Button } from 'react-bootstrap';
+import { Image, Jumbotron, Button } from 'react-bootstrap';
 import logo from './glabs.png';
 import background from './canary-wharf.jpg';
 import './App.css';
@@ -17,7 +17,6 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <Image src={logo} className="navbar-brand" alt="logo" />
-        <Nav className="Nav-header"></Nav>
         </header>
         <Jumbotron style={sectionStyle}>
           <p className="page-title-top">

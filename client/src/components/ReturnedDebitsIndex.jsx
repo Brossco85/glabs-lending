@@ -13,9 +13,9 @@ class ReturnedDebitsIndex extends Component {
   renderReturnedDebits() {
     return _.map(this.props.returnedDebits, returnedDebit => {
       return (
-        <ListGroupItem key={returnedDebit._id}>
-        <h3>Payer: {returnedDebit.PayerAccount.name}</h3>
-        <h3>Company: {returnedDebit.originatingAccountRecord.name}</h3>
+        <ListGroupItem className="list-item" key={returnedDebit._id}>
+        <div className="card-sub-title">Payer: {returnedDebit.PayerAccount.name}</div>
+        <h5>Company: {returnedDebit.originatingAccountRecord.name}</h5>
         <p>Reason for Return: {returnedDebit.returnDescription}</p>
           <p>Debit value: £{returnedDebit.valueOf.substring(1)}</p>
           <p>Debit Reference: {returnedDebit.ref}</p>
@@ -30,7 +30,7 @@ class ReturnedDebitsIndex extends Component {
     return  (
       <div>
       <h3>Returned Debits List</h3>
-      <ListGroup>
+      <ListGroup className="list-group-debit">
         {this.renderReturnedDebits()}
       </ListGroup>
     </div>
