@@ -24,11 +24,11 @@ app.get('/returneddebits', (req, res) => {
 });
 
 
-new CronJob('0 21 * * * *', () => {
+new CronJob('00 16 * * *', () => {
   beginRetrieveNewBacsDocs();
 }, null, true, "Europe/London");
 
-new CronJob('5 21 * * * *', () => {
+new CronJob('01 16 * * * ', () => {
   beginExportReturnedDebits();
 }, null, true, "Europe/London");
 

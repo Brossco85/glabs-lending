@@ -28,6 +28,7 @@ const parser = new xml2js.Parser({explicitArray : false, ignoreAttrs : false, me
 
 
 const retrieveNewBacsDocuments = () => {
+
   return new Promise ((resolve, reject) => {
     const bacsFolderDate = moment().subtract(1, 'days').format('YYYY-MM-DD');
     let newBacs = glob.sync(path.join(__dirname, `../../arudd-directory/REFT1234/${bacsFolderDate}/*.xml`));
@@ -36,8 +37,6 @@ const retrieveNewBacsDocuments = () => {
   } else {
     reject(`No Folder for ${bacsFolderDate} found`);
   }
-  }).catch((err) => {
-    console.log(err);
   })
 };
 
@@ -125,6 +124,8 @@ const beginRetrieveNewBacsDocs = () => {
         })
       })
     })
+  }).catch((err) => {
+    console.log(`${err} - retrieveBacsDocuments Job Exiting`);
   });
 };
 

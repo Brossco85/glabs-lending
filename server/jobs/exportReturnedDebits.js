@@ -5,7 +5,7 @@ const {ReturnedDebit} = require('../models/returnedDebit');
 
 const getBacsReadyForProcessing = () => {
   return new Promise((resolve, reject) => {
-    return BacsDocument.find({status: "Ready for Processing"}).then((documents) => {
+    return BacsDocument.find({status: "Ready For Processing"}).then((documents) => {
       if (documents.length > 0) {
         resolve(documents);
       } else {
@@ -99,7 +99,7 @@ const beginExportReturnedDebits = () => {
       })
     })
   }).catch((err) => {
-    console.log(err);
+    console.log(`${err} - exportReturnedDebits Job Exiting`);
   })
 };
 
