@@ -8,12 +8,39 @@
 }
 
 .App-header {
-  background-color: #222;
+  background-color: #005172;
   height: 150px;
   padding: 20px;
   color: white;
 }
 
+.btn-content-button-1 {
+    background-color: #005172;
+    border-style: none;
+    border-radius: 28px;
+    padding: 14px 16px 14px 16px;
+    min-width: 168px;
+    min-height: 40px;
+    color: #fff;
+    transition: background-color .5s ease-out;
+    font-size: 14px;
+}
+
+.page-title-top {
+  color: #fff;
+  font-size: 48px;
+  line-height: 48px;
+  margin-bottom: 30px;
+}
+
+.page-sub-title {
+  font-size: 20px;
+  line-height: 26px;
+  color: #fff;
+  font-weight: 300;
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
 .App-title {
   font-size: 1.5em;
 }

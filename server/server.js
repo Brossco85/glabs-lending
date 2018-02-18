@@ -28,7 +28,7 @@ new CronJob('00 16 * * *', () => {
   beginRetrieveNewBacsDocs();
 }, null, true, "Europe/London");
 
-new CronJob('01 16 * * * ', () => {
+new CronJob('05 16 * * * ', () => {
   beginExportReturnedDebits();
 }, null, true, "Europe/London");
 
