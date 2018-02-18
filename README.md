@@ -1,5 +1,6 @@
 <h1>Glabs Lending</h1>
-Node Js app running Background workers at 9.00pm and 9.05pm each day to get xml files from a local directory, parsing to JSON before storing in a Mongo database and zipping the processed files: <br>
+Node Js app running Background workers at 16.00pm and 16.05pm each day to get xml files from a local directory, parsing to JSON before storing in a Mongo database and zipping the processed files: <br>
+
 
 v1 of the app is set up to look for new orders from the previous day in arudd-directory/REFT1234
 
