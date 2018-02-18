@@ -8,14 +8,81 @@
 }
 
 .App-header {
-  background-color: #222;
+  background-color: #fff;
   height: 150px;
   padding: 20px;
   color: white;
 }
 
+.btn-content-button-1 {
+  background-color: #005172;
+  border-style: none;
+  border-radius: 28px;
+  padding: 14px 16px 14px 16px;
+  min-width: 168px;
+  min-height: 40px;
+  color: #fff;
+  transition: background-color .5s ease-out;
+  font-size: 14px;
+}
+
+.page-title-top {
+  color: #fff;
+  font-size: 48px;
+  line-height: 48px;
+  margin-bottom: 30px;
+}
+
+.page-sub-title {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+  line-height: 26px;
+  color: #fff;
+  font-weight: 300;
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
 .App-title {
   font-size: 1.5em;
+}
+
+.list-group-debit {
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  text-align: center;
+}
+
+.card-sub-title {
+  color: #3095b4;
+  font-size: 14px;
+  font-weight: 600;
+  padding-bottom: 10px;
+}
+
+.footer {
+    border-top: 2px solid #f4f4f4;
+    font-size: 12px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #fff;
+    color: #444;
+    z-index: 1;
+}
+
+.list-item {
+  background-color: #f4f4f4;
+  display: inline-block;
+  margin: 12px;
+  padding: 0 5px;
+  width: 25%;
+  vertical-align: top;
+  text-align: center;
 }
 
 .App-intro {

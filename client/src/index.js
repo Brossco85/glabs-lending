@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Footer from './components/Footer';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
@@ -22,6 +23,7 @@ ReactDOM.render(
         <Switch>
           <Route path='/' component={ReturnedDebitsIndex} />
         </Switch>
+        <Footer/>
       </div>
     </BrowserRouter>
   </Provider>,

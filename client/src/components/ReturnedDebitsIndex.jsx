@@ -13,10 +13,14 @@ class ReturnedDebitsIndex extends Component {
   renderReturnedDebits() {
     return _.map(this.props.returnedDebits, returnedDebit => {
       return (
-        <ListGroupItem key={returnedDebit._id}>
-          <p>Debit Reference: {returnedDebit.ref}
-          Debit transaction Code: {returnedDebit.transCode}
-          Debit Return Code: {returnedDebit.returnCode}</p>
+        <ListGroupItem className="list-item" key={returnedDebit._id}>
+        <div className="card-sub-title">Payer: {returnedDebit.PayerAccount.name}</div>
+        <h5>Company: {returnedDebit.originatingAccountRecord.name}</h5>
+        <p>Reason for Return: {returnedDebit.returnDescription}</p>
+          <p>Debit value: £{returnedDebit.valueOf.substring(1)}</p>
+          <p>Debit Reference: {returnedDebit.ref}</p>
+          <p>Debit transaction Code: {returnedDebit.transCode}</p>
+          <p>Debit Return Code: {returnedDebit.returnCode}</p>
         </ListGroupItem>
         );
     });
@@ -26,7 +30,7 @@ class ReturnedDebitsIndex extends Component {
     return  (
       <div>
       <h3>Returned Debits List</h3>
-      <ListGroup>
+      <ListGroup className="list-group-debit">
         {this.renderReturnedDebits()}
       </ListGroup>
     </div>

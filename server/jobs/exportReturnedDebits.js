@@ -49,7 +49,7 @@ const exportReturnedDebits = (doc) => {
         returnCode: item.returnCode,
         returnDescription: item.returnDescription,
         originalProcessingDate: item.originalProcessingDate,
-        valueOf: item.valueOf[1],
+        valueOf: item.valueOf,
         currency: item.currency,
         PayerAccount: item.PayerAccount
       })
