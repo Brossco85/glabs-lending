@@ -1,5 +1,7 @@
 <h1>Glabs Lending</h1>
-Node Js app running Background workers at 16.00pm each day to get xml files from a local directory, parsing to JSON before storing in a Mongo database and zipping the processed files: <br>
+Node Js app running Background workers run on startup each day to get xml files from a local directory, parsing to JSON before storing in a Mongo database and zipping the processed files: <br>
+
+Whilst in development the cronjobs are set to run every minute to retrieve new bacs documents and every second minute to export the returned debits
 
 
 v1 of the app is set up to look for new orders from the previous day in arudd-directory/REFT1234.  It has also been configured to run the job on startup.
