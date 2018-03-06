@@ -24,13 +24,13 @@ app.get('/returneddebits', (req, res) => {
 });
 
 
-new CronJob('00 16 * * *', () => {
+new CronJob('* * * * *', () => {
   beginRetrieveNewBacsDocs();
-}, beginExportReturnedDebits(), true, "Europe/London");
+}, null, true, "Europe/London");
 
-// new CronJob('05 16 * * * ', () => {
-//   beginExportReturnedDebits();
-// }, null, true, "Europe/London");
+new CronJob('*/2 * * * *', () => {
+  beginExportReturnedDebits();
+}, null, true, "Europe/London");
 
 app.listen(port, () => {
   console.log(`Started on port ${port}`);
